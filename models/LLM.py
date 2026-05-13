@@ -1,6 +1,8 @@
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
-import streamlit as st
+import os
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-exp", google_api_key=st.secrets["GEMINI-API-KEY"]
+    model="gemini-3-flash-preview", 
+    google_api_key=os.environ.get("GEMINI_API_KEY"),
+    thinking_level="low",
 )

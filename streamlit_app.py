@@ -41,35 +41,32 @@ if uploaded_file:
 
 
 def generate_llm_response(input_text):
-    ans = ""
-    container = st.empty()
-    for token in llm.stream(input_text):
-        ans += token.content
-        container.info(ans)
+    # Generator expression to yield string chunks from the LLM
+    st.write_stream(chunk.content for chunk in llm.stream(input_text))
 
 
 def generate_rag_response(input_text):
-    ans = ""
     input_dict = {"question": str(input_text)}
-    container = st.empty()
     response = app.invoke(input_dict)
-    arr = []
-    for token in response["generation"]:
-        ans += token
-        arr.append(token)
-        container.info(ans)
-    ans += "\n\nSources - "
+    
+    # st.write_stream natively accepts generators
+    # This streams the text much faster and smoother than updating an info container
+    st.write_stream(response["generation"])
+    
+    # Process and append sources below the streamed response
+    ans = "\n\n**Sources:**\n"
     for j, i in enumerate(response["documents"]):
         s = str(i.page_content).replace("\n", " ")
-        ans += f"\n\n{str(j+1)}. "
+        ans += f"\n{j+1}. "
         if len(s) > 100:
-            ans += f"Document - ({s[:45]}..........{s[-45:]}) "
+            ans += f"**Document:** {s[:45]}..........{s[-45:]} "
         else:
-            ans += f"Document - ({s}) "
-        ans += f"Source - ({i.metadata['source']}) "
+            ans += f"**Document:** {s} "
+        ans += f"**Source:** {i.metadata.get('source', 'Unknown')} "
         if "page" in i.metadata:
-            ans += f"Page - ({int(i.metadata['page'])+1}) "
-    container.info(ans)
+            ans += f"**Page:** {int(i.metadata['page'])+1} "
+    
+    st.info(ans)
 
 
 with st.form("my_form"):

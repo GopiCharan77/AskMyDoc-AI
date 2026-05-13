@@ -1,16 +1,16 @@
 # Corrective-RAG
-An Implementation of this paper - https://arxiv.org/pdf/2401.15884 using LangChain and LangGraph
+An Implementation of this paper - https://arxiv.org/pdf/2401.15884 using LangChain and LangGraph.
 
 ### Requirements
-- Large Language Model (Change it in models/LLM. By default it uses gemini-1.5-flash by Google. You can use any model supported by langchain.)
-- Embeddings Model (Change it in models/EM. By default it uses text-embedding-004 by Google. You can use any model supported by langchain.)
-- Python 3.10 (use other versions at your own risk) (skip if using docker)
-- Python libraries mentioned in requirements.txt (skip if using docker)
+- Large Language Model (Change it in models/LLM. By default it uses gemini-1.5-flash by Google. You can use any model supported by langchain).
+- Embeddings Model (Change it in models/EM. By default it uses text-embedding-004 by Google. You can use any model supported by langchain).
+- Python 3.10 (use other versions at your own risk) (skip if using docker).
+- Python libraries mentioned in requirements.txt (skip if using docker).
 
 ### Setup
-- Copy the repository
+- Copy the repository.
 - Change LLM and EM in models.
-- Run the app
+- Run the app - 
   - Locally
     ```
     streamlit run streamlit_app.py
@@ -23,9 +23,9 @@ An Implementation of this paper - https://arxiv.org/pdf/2401.15884 using LangCha
 #### Check the app out here - https://corrective-rag.streamlit.app
 
 ### To-do (contributions are welcome)
-- [ ] Use Hybrid Search
-- [ ] Change VectorDB to Pinecone
-- [ ] Allow Users to Chat
-- [ ] Maintain Chat History for each user
-- [ ] Improve Theming
+- [ ] Use Hybrid Search.
+- [ ] Change VectorDB to Pinecone.
+- [ ] Allow Users to Chat.
+- [ ] Maintain Chat History for each user.
+- [ ] Improve Theming.
 - [ ] DOCX, XLSX, PPTX, CSV, TXT  support.
