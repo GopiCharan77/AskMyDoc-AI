@@ -42,7 +42,12 @@ if uploaded_file:
 
 def generate_llm_response(input_text):
     # Generator expression to yield string chunks from the LLM
-    st.write_stream(chunk.content for chunk in llm.stream(input_text))
+    st.write_stream(
+        block["text"] for chunk in llm.stream(input_text)
+        if isinstance(chunk.content, list)
+        for block in chunk.content
+        if block.get("type") == "text" and block.get("text")
+    )
 
 
 def generate_rag_response(input_text):
