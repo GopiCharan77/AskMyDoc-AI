@@ -9,5 +9,5 @@ langchain-google-genai
 langgraph
 tiktoken
 faiss-cpu
-duckduckgo_search
+ddgs
 pymupdf
