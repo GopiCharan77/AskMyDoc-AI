@@ -1,3 +1,12 @@
+---
+title: Self Reflective RAG
+emoji: 🤖
+colorFrom: purple
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # AskMyDoc AI
 
 An Agentic RAG (Retrieval-Augmented Generation) app with self-reflection and corrective capabilities.
