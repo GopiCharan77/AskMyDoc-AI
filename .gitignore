@@ -1,7 +1,7 @@
-__pycache__
-.ruff_cache
-index/*
-tools/__pycache__
-nodes/__pycache__
-models/__pycache__
-.streamlit/secrets.toml
+.env
+.DS_Store
+venv/
+__pycache__/
+*.pyc
+faiss_index/
+*.pdf

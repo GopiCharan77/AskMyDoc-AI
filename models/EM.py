@@ -1,7 +1,5 @@
-from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
-import os
+from langchain_huggingface import HuggingFaceEmbeddings
 
-embedding = GoogleGenerativeAIEmbeddings(
-    model="models/gemini-embedding-001",
-    google_api_key=os.environ.get("GEMINI_API_KEY")
+embedding = HuggingFaceEmbeddings(
+    model_name="all-MiniLM-L6-v2"
 )
