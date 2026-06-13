@@ -17,7 +17,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 st.markdown(
     "<h1 style='text-align: center; color: #6C63FF;'>AskMyDoc AI</h1>",
     unsafe_allow_html=True,
@@ -36,7 +35,6 @@ if uploaded_file:
 
 
 def generate_llm_response(input_text):
-    # Generator expression to yield string chunks from the LLM
     st.write_stream(
         block["text"] for chunk in llm.stream(input_text)
         if isinstance(chunk.content, list)
@@ -48,12 +46,9 @@ def generate_llm_response(input_text):
 def generate_rag_response(input_text):
     input_dict = {"question": str(input_text)}
     response = app.invoke(input_dict)
-    
-    # st.write_stream natively accepts generators
-    # This streams the text much faster and smoother than updating an info container
+
     st.write_stream(response["generation"])
-    
-    # Process and append sources below the streamed response
+
     ans = "\n\n**Sources:**\n"
     for j, i in enumerate(response["documents"]):
         s = str(i.page_content).replace("\n", " ")
@@ -65,10 +60,9 @@ def generate_rag_response(input_text):
         ans += f"**Source:** {i.metadata.get('source', 'Unknown')} "
         if "page" in i.metadata:
             ans += f"**Page:** {int(i.metadata['page'])+1} "
-    
+
     st.info(ans)
 
-    # Show which source was used
     sources = [str(doc.metadata.get("source", "")) for doc in response["documents"]]
     if any("http" in s for s in sources):
         st.info("🌐 Answer sourced from **web search** (document chunks were not relevant enough)")
