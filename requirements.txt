@@ -8,3 +8,4 @@ streamlit
 sentence-transformers
 pypdf
 pymupdf
+ddgs
