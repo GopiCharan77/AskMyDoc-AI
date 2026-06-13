@@ -12,6 +12,9 @@ COPY . .
 
 RUN pip3 install -r requirements.txt
 
+# Pre-download the embedding model during build so it doesn't hang at startup
+RUN python3 -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+
 EXPOSE 8501
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
